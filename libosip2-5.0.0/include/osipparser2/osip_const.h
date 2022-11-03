@@ -85,6 +85,8 @@
 #define VIA_SHORT		"v"
 #define WARNING			"warning"
 #define WWW_AUTHENTICATE	"www-authenticate"
+#define SECURITYINFO	"securityinfo"
+#define NOTE	"note"
 
 
 #define RESPONSE_CODES 51

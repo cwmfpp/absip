@@ -169,6 +169,16 @@ parser_init (void)
   pconfig[i].hname = WWW_AUTHENTICATE;
   pconfig[i].ignored_when_invalid = 1;
   pconfig[i++].setheader = (&osip_message_set_www_authenticate);
+#ifndef MINISIZE
+  pconfig[i].hname = SECURITYINFO;
+  pconfig[i].ignored_when_invalid = 1;
+  pconfig[i++].setheader = (&osip_message_set_securityinfo);
+#endif
+#ifndef MINISIZE
+        pconfig[i].hname = NOTE;
+        pconfig[i].ignored_when_invalid = 1;
+        pconfig[i++].setheader = (&osip_message_set_note);
+#endif
 
   /* build up hash table for fast header lookup */
 

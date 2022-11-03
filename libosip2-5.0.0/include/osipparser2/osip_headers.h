@@ -53,6 +53,8 @@
 #include <osipparser2/headers/osip_to.h>
 #include <osipparser2/headers/osip_via.h>
 #include <osipparser2/headers/osip_www_authenticate.h>
+#include <osipparser2/headers/osip_securityinfo.h>
+#include <osipparser2/headers/osip_note.h>
 
 /**
  * @file osip_headers.h

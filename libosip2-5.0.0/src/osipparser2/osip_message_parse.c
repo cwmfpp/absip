@@ -471,7 +471,9 @@ osip_message_set_multiple_header (osip_message_t * sip, char *hname, char *hvalu
       || (hname_len == 1 && strncmp (hname, "r", 1) == 0) /* refer-to */
       || (hname_len == 8 && strncmp (hname, "refer-to", 8) == 0)
       || (hname_len == 1 && strncmp (hname, "b", 1) == 0) /* referred-by */
-      || (hname_len == 11 && strncmp (hname, "referred-by", 11) == 0))
+      || (hname_len == 11 && strncmp (hname, "referred-by", 11) == 0)
+      || (hname_len == 12 && strncmp (hname, "securityinfo", 12) == 0)
+      || (hname_len == 4 && strncmp (hname, "note", 4) == 0))
     /* there is no multiple header! likely      */
     /* to happen most of the time...            */
     /* or hname is a TEXT-UTF8-TRIM and may     */

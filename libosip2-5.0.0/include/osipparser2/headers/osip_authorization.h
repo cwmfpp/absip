@@ -63,6 +63,12 @@
     char *crand;
 	  char *cnum;
     char *auth_param;		/**< other parameters (optionnal) */
+    char *random1;		/**add by chenwenmin, for GB35114 */
+    char *random2;		/**add by chenwenmin, for GB35114 */
+    char *deviceid;		/**add by chenwenmin, for GB35114 */
+    char *serverid;		/**add by chenwenmin, for GB35114 */
+    char *sign1;		/**add by chenwenmin, for GB35114 */
+    char *keyversion;		/**add by chenwenmin, for GB35114 */
   };
 
 
@@ -293,6 +299,21 @@ extern "C"
  */
   void osip_authorization_set_cnum (osip_authorization_t * header,
 				    char *value);
+
+char *osip_authorization_get_random1 (osip_authorization_t * header);
+void osip_authorization_set_random1 (osip_authorization_t * header, char *value);
+
+char *osip_authorization_get_random2 (osip_authorization_t * header);
+void osip_authorization_set_random2 (osip_authorization_t * header, char *value);
+
+char *osip_authorization_get_deviceid (osip_authorization_t * header);
+void osip_authorization_set_deviceid (osip_authorization_t * header, char *value);
+
+char *osip_authorization_get_serverid (osip_authorization_t * header);
+void osip_authorization_set_serverid (osip_authorization_t * header, char *value);
+
+char *osip_authorization_get_sign1 (osip_authorization_t * header);
+void osip_authorization_set_sign1 (osip_authorization_t * header, char *value);
 
 #ifdef __cplusplus
 }

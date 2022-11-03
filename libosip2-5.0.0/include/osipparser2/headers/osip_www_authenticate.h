@@ -57,6 +57,7 @@
     char *targetname;		/**< targetname (optional - NTLM) */
     char *gssapi_data;		/**< gssapi-data (optional - NTLM) */
     char *auth_param;		/**< other parameters (optional) */
+    char *random1;        /*add by chenwenmin, for GB35114*/
   };
 
 
@@ -236,6 +237,10 @@ extern "C"
  * @param value The value of the new parameter.
  */
   void osip_www_authenticate_set_gssapi_data (osip_www_authenticate_t * header,
+					char *value);
+
+  char *osip_www_authenticate_get_random1 (osip_www_authenticate_t * header);
+  void osip_www_authenticate_set_random1 (osip_www_authenticate_t * header,
 					char *value);
 
 #ifdef __cplusplus

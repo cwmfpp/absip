@@ -135,7 +135,7 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 libosipparser2_la_LIBADD =
 am__libosipparser2_la_SOURCES_DIST = osip_proxy_authorization.c \
 	osip_cseq.c osip_record_route.c osip_route.c osip_to.c \
-	osip_from.c osip_uri.c osip_authorization.c osip_header.c \
+	osip_from.c osip_uri.c osip_authorization.c osip_securityinfo.c osip_note.c osip_header.c \
 	osip_www_authenticate.c osip_via.c osip_body.c osip_md5c.c \
 	osip_message.c osip_list.c osip_call_id.c osip_message_parse.c \
 	osip_contact.c osip_message_to_str.c osip_content_length.c \
@@ -156,7 +156,7 @@ am__libosipparser2_la_SOURCES_DIST = osip_proxy_authorization.c \
 @BUILD_MAXSIZE_TRUE@	sdp_message.lo
 am_libosipparser2_la_OBJECTS = osip_proxy_authorization.lo \
 	osip_cseq.lo osip_record_route.lo osip_route.lo osip_to.lo \
-	osip_from.lo osip_uri.lo osip_authorization.lo osip_header.lo \
+	osip_from.lo osip_uri.lo osip_authorization.lo osip_securityinfo.lo osip_note.lo osip_header.lo \
 	osip_www_authenticate.lo osip_via.lo osip_body.lo osip_md5c.lo \
 	osip_message.lo osip_list.lo osip_call_id.lo \
 	osip_message_parse.lo osip_contact.lo osip_message_to_str.lo \
@@ -364,7 +364,7 @@ EXTRA_DIST = parser.h
 lib_LTLIBRARIES = libosipparser2.la
 libosipparser2_la_SOURCES = osip_proxy_authorization.c osip_cseq.c \
 	osip_record_route.c osip_route.c osip_to.c osip_from.c \
-	osip_uri.c osip_authorization.c osip_header.c \
+	osip_uri.c osip_authorization.c osip_securityinfo.c osip_note.c osip_header.c \
 	osip_www_authenticate.c osip_via.c osip_body.c osip_md5c.c \
 	osip_message.c osip_list.c osip_call_id.c osip_message_parse.c \
 	osip_contact.c osip_message_to_str.c osip_content_length.c \
@@ -462,6 +462,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/osip_allow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/osip_authentication_info.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/osip_authorization.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/osip_securityinfo.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/osip_note.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/osip_body.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/osip_call_id.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/osip_call_info.Plo@am__quote@

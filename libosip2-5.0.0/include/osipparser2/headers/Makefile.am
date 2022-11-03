@@ -11,5 +11,5 @@ osip_authorization.h    osip_cseq.h                 osip_to.h                 \
 osip_call_info.h        osip_error_info.h           osip_via.h                \
 osip_call_id.h          osip_from.h                 osip_www_authenticate.h   \
 osip_header.h           osip_authentication_info.h  \
-osip_proxy_authentication_info.h
+osip_proxy_authentication_info.h	osip_note.h	osip_securityinfo.h
 

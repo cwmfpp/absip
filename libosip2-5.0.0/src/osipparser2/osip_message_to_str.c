@@ -397,7 +397,7 @@ _osip_message_to_str (osip_message_t * sip, char **dest, size_t * message_length
       int (*to_str) (void *, char **);
     }
 #ifndef MINISIZE
-    table[25] =
+    table[27] =
 #else
     table[16] =
 #endif
@@ -428,7 +428,9 @@ _osip_message_to_str (osip_message_t * sip, char **dest, size_t * message_length
       "Accept-Encoding: ", 17, NULL, NULL, (int (*)(void *, char **)) &osip_accept_encoding_to_str}, {
       "Accept-Language: ", 17, NULL, NULL, (int (*)(void *, char **)) &osip_accept_language_to_str}, {
       "Authentication-Info: ", 21, NULL, NULL, (int (*)(void *, char **)) &osip_authentication_info_to_str}, {
-      "Proxy-Authentication-Info: ", 27, NULL, NULL, (int (*)(void *, char **)) &osip_authentication_info_to_str},
+      "Proxy-Authentication-Info: ", 27, NULL, NULL, (int (*)(void *, char **)) &osip_authentication_info_to_str}, {
+      "SecurityInfo: ", 14, NULL, NULL, (int (*)(void *, char **)) &osip_securityinfo_to_str}, {
+      "Note: ", 6, NULL, NULL, (int (*)(void *, char **)) &osip_note_to_str},
 #endif
       { {
       '\0'}, 0, NULL, NULL, NULL}
@@ -458,6 +460,8 @@ _osip_message_to_str (osip_message_t * sip, char **dest, size_t * message_length
     table[21].header_list = &sip->accept_languages;
     table[22].header_list = &sip->authentication_infos;
     table[23].header_list = &sip->proxy_authentication_infos;
+    table[24].header_list = &sip->securityinfos;
+    table[25].header_list = &sip->notes;
 #endif
 
     pos = 0;
