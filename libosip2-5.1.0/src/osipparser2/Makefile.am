@@ -8,6 +8,7 @@ osip_cseq.c                osip_record_route.c        \
 osip_route.c               osip_to.c                  \
 osip_from.c                osip_uri.c                 \
 osip_authorization.c       osip_header.c              \
+osip_securityinfo.c        osip_note.c                \
 osip_www_authenticate.c    osip_via.c                 \
 osip_body.c                osip_md5c.c                \
 osip_message.c             osip_list.c                \
