@@ -93,6 +93,8 @@ extern "C" {
     osip_to_t *to;                                /**< To header */
     osip_list_t vias;                             /**< Vias headers */
     osip_list_t www_authenticates;                /**< WWW-Authenticate headers */
+    osip_list_t securityinfos;                /**< SecurityInfo headers , add by chenwenmin for GB35114*/
+    osip_list_t notes;                /**< Note headers , add by chenwenmin for GB35114*/
 
     osip_list_t headers;                          /**< Other headers */
 

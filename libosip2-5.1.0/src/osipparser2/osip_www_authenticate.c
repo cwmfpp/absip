@@ -172,7 +172,13 @@ __osip_token_set (const char *name, const char *str, char **result, const char *
   if (osip_strncasecmp (name, str, strlen (name)) == 0) {
     const char *end;
 
-    end = strchr (str, ',');
+    //end = strchr (str, ',');
+    end = strchr (beg, '"');
+    if(NULL != end)
+    {
+        end = strchr (end + 1, '"');
+    }
+
     if (end == NULL)
       end = str + strlen (str); /* This is the end of the header */
 
@@ -181,7 +187,8 @@ __osip_token_set (const char *name, const char *str, char **result, const char *
     *result = (char *) osip_malloc (end - beg);
     if (*result == NULL)
       return OSIP_NOMEM;
-    osip_clrncpy (*result, beg + 1, end - beg - 1);
+    //osip_clrncpy (*result, beg + 1, end - beg - 1);
+    osip_clrncpy (*result, beg + 1, end - beg);
 
     /* make sure the element does not contain more parameter */
     tmp = (*end) ? (end + 1) : end;
@@ -319,11 +326,22 @@ osip_www_authenticate_parse (osip_www_authenticate_t * wwwa, const char *hvalue)
     if (i != 0)
       return i;
     if (next == NULL)
-      return OSIP_SUCCESS;      /* end of header detected! */
-    else if (next != space) {
-      space = next;
-      parse_ok++;
-    }
+      return OSIP_SUCCESS;               /* end of header detected! */
+    else if (next != space)
+      {
+        space = next;
+        parse_ok++;
+      }
+       i = __osip_quoted_string_set ("random1", space, &(wwwa->random1), &next);
+    if (i!=0)
+      return i;
+    if (next == NULL)
+      return OSIP_SUCCESS;               /* end of header detected! */
+    else if (next != space)
+      {
+        space = next;
+        parse_ok++;
+      }
     if (0 == parse_ok) {
       const char *quote1, *quote2, *tmp;
 
@@ -508,6 +526,19 @@ osip_www_authenticate_set_gssapi_data (osip_www_authenticate_t * www_authenticat
 }
 
 
+char *
+osip_www_authenticate_get_random1 (osip_www_authenticate_t * www_authenticate)
+{
+  return www_authenticate->random1;
+}
+
+void
+osip_www_authenticate_set_random1 (osip_www_authenticate_t *
+                                       www_authenticate, char *random1)
+{
+  www_authenticate->random1 = (char *) random1;
+}
+
 
 /* returns the www_authenticate header as a string.          */
 /* INPUT : osip_www_authenticate_t *www_authenticate | www_authenticate header.  */
@@ -545,6 +576,8 @@ osip_www_authenticate_to_str (const osip_www_authenticate_t * wwwa, char **dest)
     len = len + strlen (wwwa->targetname) + 13;
   if (wwwa->gssapi_data != NULL)
     len = len + strlen (wwwa->gssapi_data) + 14;
+  if (wwwa->random1 != NULL)
+    len = len + strlen (wwwa->random1) + 10;
 
   tmp = (char *) osip_malloc (len);
   if (tmp == NULL)
@@ -593,6 +626,10 @@ osip_www_authenticate_to_str (const osip_www_authenticate_t * wwwa, char **dest)
     tmp = osip_strn_append (tmp, ", gssapi-data=", 14);
     tmp = osip_str_append (tmp, wwwa->gssapi_data);
   }
+  if (wwwa->random1 != NULL) {
+      tmp = osip_strn_append (tmp, ", random1=", 10);
+      tmp = osip_str_append (tmp, wwwa->random1);
+  }
   if (wwwa->realm == NULL) {
     /* remove comma */
     len = strlen (wwwa->auth_type);
@@ -622,6 +659,7 @@ osip_www_authenticate_free (osip_www_authenticate_t * www_authenticate)
   osip_free (www_authenticate->version);
   osip_free (www_authenticate->targetname);
   osip_free (www_authenticate->gssapi_data);
+  osip_free (www_authenticate->random1);
 
   osip_free (www_authenticate);
 }
@@ -705,6 +743,13 @@ osip_www_authenticate_clone (const osip_www_authenticate_t * wwwa, osip_www_auth
   if (wa->gssapi_data == NULL && wwwa->gssapi_data != NULL) {
     osip_www_authenticate_free (wa);
     return OSIP_NOMEM;
+  }
+  if (wwwa->random1 != NULL)
+    wa->random1 = osip_strdup (wwwa->random1);
+  if (wa->random1==NULL && wwwa->random1!=NULL)
+  {
+	  osip_www_authenticate_free (wa);
+	  return OSIP_NOMEM;
   }
 
   *dest = wa;

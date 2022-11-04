@@ -70,6 +70,8 @@ osip_message_init (osip_message_t ** sip)
   (*sip)->to = NULL;
   osip_list_init (&(*sip)->vias);
   osip_list_init (&(*sip)->www_authenticates);
+  osip_list_init (&(*sip)->securityinfos);
+  osip_list_init (&(*sip)->notes);
 
   osip_list_init (&(*sip)->bodies);
 
@@ -163,6 +165,8 @@ osip_message_free (osip_message_t * sip)
     osip_to_free (sip->to);
   osip_list_special_free (&sip->vias, (void (*)(void *)) &osip_via_free);
   osip_list_special_free (&sip->www_authenticates, (void (*)(void *)) &osip_www_authenticate_free);
+  osip_list_special_free (&sip->securityinfos, (void (*)(void *)) &osip_securityinfo_free);
+  osip_list_special_free (&sip->notes, (void (*)(void *)) &osip_note_free);
   osip_list_special_free (&sip->headers, (void (*)(void *)) &osip_header_free);
   osip_list_special_free (&sip->bodies, (void (*)(void *)) &osip_body_free);
   osip_free (sip->message);
@@ -344,6 +348,16 @@ osip_message_clone (const osip_message_t * sip, osip_message_t ** dest)
     return i;
   }
   i = osip_list_clone (&sip->www_authenticates, &copy->www_authenticates, (int (*)(void *, void **)) &osip_www_authenticate_clone);
+  if (i != 0) {
+    osip_message_free (copy);
+    return i;
+  }
+  i = osip_list_clone (&sip->securityinfos, &copy->securityinfos, (int (*)(void *, void **)) &osip_securityinfo_clone);
+  if (i != 0) {
+    osip_message_free (copy);
+    return i;
+  }
+  i = osip_list_clone (&sip->notes, &copy->notes, (int (*)(void *, void **)) &osip_note_clone);
   if (i != 0) {
     osip_message_free (copy);
     return i;

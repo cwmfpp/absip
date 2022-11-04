@@ -24,7 +24,7 @@
 #ifndef DOXYGEN
 
 #ifndef MINISIZE
-#define NUMBER_OF_HEADERS 33
+#define NUMBER_OF_HEADERS 35
 #else
 #define NUMBER_OF_HEADERS 22
 #endif

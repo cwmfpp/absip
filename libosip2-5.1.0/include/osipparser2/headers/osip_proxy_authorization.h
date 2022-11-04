@@ -241,6 +241,21 @@ extern "C"
  */
 #define osip_proxy_authorization_set_gssapi_data(header, value) osip_authorization_set_gssapi_data(header, value)
 
+#define osip_proxy_authorization_get_random1(header)      osip_authorization_get_random1(header)
+#define osip_proxy_authorization_set_random1(header, value)   osip_authorization_set_random1(header, value)
+
+#define osip_proxy_authorization_get_random2(header)      osip_authorization_get_random2(header)
+#define osip_proxy_authorization_set_random2(header, value)   osip_authorization_set_random2(header, value)
+
+#define osip_proxy_authorization_get_deviceid(header)      osip_authorization_get_deviceid(header)
+#define osip_proxy_authorization_set_deviceid(header, value)   osip_authorization_set_deviceid(header, value)
+
+#define osip_proxy_authorization_get_serverid(header)      osip_authorization_get_serverid(header)
+#define osip_proxy_authorization_set_serverid(header, value)   osip_authorization_set_serverid(header, value)
+
+#define osip_proxy_authorization_get_sign1(header)      osip_authorization_get_sign1(header)
+#define osip_proxy_authorization_set_sign1(header, value)   osip_authorization_set_sign1(header, value)
+
 #ifdef __cplusplus
 }
 #endif

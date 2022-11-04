@@ -558,6 +558,23 @@ extern "C" {
 #else
 #define osip_message_get_www_authenticate(sip, pos, dest) osip_message_get_knownheaderlist((&(sip)->www_authenticates), pos, (void **)(dest))
 #endif
+
+int osip_message_set_securityinfo (osip_message_t * sip, const char *hvalue);
+
+#ifndef MINISIZE
+  int osip_message_get_securityinfo (const osip_message_t * sip, int pos, osip_securityinfo_t ** dest);
+#else
+#define osip_message_get_securityinfo(sip, pos, dest) osip_message_get_knownheaderlist((&(sip)->securityinfos), pos, (void **)(dest))
+#endif
+
+int osip_message_set_note (osip_message_t * sip, const char *hvalue);
+
+#ifndef MINISIZE
+  int osip_message_get_note (const osip_message_t * sip, int pos, osip_note_t ** dest);
+#else
+#define osip_message_get_note(sip, pos, dest) osip_message_get_knownheaderlist((&(sip)->notes), pos, (void **)(dest))
+#endif
+
 #ifndef DOXYGEN
 /**
  * Allocate and Add multiple header (not defined in oSIP).
